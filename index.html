@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        display: flex;
+        gap: 2rem;
+        flex-direction: column;
+      }
+
+      .time-format-output {
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        font-family: monospace;
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Time Format Checker</h1>
+
+    <p>
+      Compares the date time string between Intl.DateTimeFormat, moment and
+      Date.prototype.toLocaleString, when no locale is provided.
+    </p>
+
+    <div class="container">
+      <p>Intl.DateTimeFormat</p>
+      <div id="int-output" class="time-format-output"></div>
+
+      <p>Date.prototype.toLocaleString</p>
+      <div id="locale-string-output" class="time-format-output"></div>
+
+      <p>Moment.js - uses browser locale to derive time format</p>
+      <div id="moment-output" class="time-format-output"></div>
+    </div>
+
+    <script>
+      const date = new Date();
+
+      const intlFormat = new Intl.DateTimeFormat(undefined, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }).format(date);
+
+      const localeString = date.toLocaleString(undefined, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+
+      document.getElementById("int-output").textContent = intlFormat;
+      document.getElementById("locale-string-output").textContent =
+        localeString;
+
+      function renderMomentOutput() {
+        if (typeof moment === "undefined") {
+          document.getElementById("moment-output").textContent =
+            "Moment failed to load";
+          return;
+        }
+        const momentFormat = moment(date).format("L LTS");
+        document.getElementById("moment-output").textContent = momentFormat;
+      }
+
+      function handleMomentLoadError() {
+        document.getElementById("moment-output").textContent =
+          "Moment CDN load error";
+      }
+    </script>
+
+    <script src="./moment.min.js" onload="renderMomentOutput()"></script>
+  </body>
+</html>
