@@ -12,8 +12,12 @@
 
       .container {
         display: flex;
-        gap: 2rem;
         flex-direction: column;
+      }
+
+      .container .title {
+        font-weight: bold;
+        margin-top: 1rem;
       }
 
       .time-format-output {
@@ -38,13 +42,13 @@
     <p>Navigator Locale - <span id="navigator-locale-value"></span></p>
 
     <div class="container">
-      <p>Intl.DateTimeFormat</p>
+      <p class="title">Intl.DateTimeFormat</p>
       <div id="int-output" class="time-format-output"></div>
 
-      <p>Date.prototype.toLocaleString</p>
+      <p class="title">Date.prototype.toLocaleString</p>
       <div id="locale-string-output" class="time-format-output"></div>
 
-      <p>Moment.js - uses browser locale to derive time format</p>
+      <p class="title">Moment.js - uses browser locale to derive time format</p>
       <div id="moment-output" class="time-format-output"></div>
     </div>
 
