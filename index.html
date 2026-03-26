@@ -49,22 +49,12 @@
       const date = new Date();
 
       const intlFormat = new Intl.DateTimeFormat(undefined, {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
       }).format(date);
 
-      const localeString = date.toLocaleString(undefined, {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
+      const localeString = new Date().toLocaleTimeString().toLowerCase();
 
       document.getElementById("int-output").textContent = intlFormat;
       document.getElementById("locale-string-output").textContent =
@@ -76,7 +66,7 @@
             "Moment failed to load";
           return;
         }
-        const momentFormat = moment(date).format("L LTS");
+        const momentFormat = moment(date).format("LTS");
         document.getElementById("moment-output").textContent = momentFormat;
       }
 
