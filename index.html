@@ -34,6 +34,9 @@
       Date.prototype.toLocaleString, when no locale is provided.
     </p>
 
+    <p>Intl Locale - <span id="intl-locale-value"></span></p>
+    <p>Navigator Locale - <span id="navigator-locale-value"></span></p>
+
     <div class="container">
       <p>Intl.DateTimeFormat</p>
       <div id="int-output" class="time-format-output"></div>
@@ -59,6 +62,11 @@
       document.getElementById("int-output").textContent = intlFormat;
       document.getElementById("locale-string-output").textContent =
         localeString;
+
+      document.getElementById("intl-locale-value").textContent =
+        Intl.DateTimeFormat().resolvedOptions().locale;
+      document.getElementById("navigator-locale-value").textContent =
+        navigator.language || navigator.userLanguage;
 
       function renderMomentOutput() {
         if (typeof moment === "undefined") {
